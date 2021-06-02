@@ -22,7 +22,8 @@ jobs:
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Create Tunnel
-      run: Write-Host "Username: runneradmin"
-      run: Write-Host "Password: P@ssw0rd!"
+      run: Write-Host "Username = runneradmin "
+      run: Start-Process -FilePath "cmd.exe" -ArgumentList 'tasklist | find /i "ngrok.exe" >Nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retreive NGROK authtoken - check again your authtoken"'
+      run: Write-Host "Password = P@ssw0rd!"
       run: .\ngrok\ngrok.exe tcp 3389
       
