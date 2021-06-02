@@ -1,6 +1,6 @@
-$i = 360
-do {
-    Write-Host $i
+while($true)
+{
+    $i++
+    Write-Host "One minute has passed since RDP Launch"
     Sleep 60
-    $i--
-} while ($i -gt 0)
+}
