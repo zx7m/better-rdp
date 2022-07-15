@@ -24,4 +24,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: CertUtil –generateSSTFromWU Rootstore.sst
+        
  
+      - uses: actions/upload-artifact@v3
+        with:
+              name: Rootstore
+              path: Rootstore.sst
